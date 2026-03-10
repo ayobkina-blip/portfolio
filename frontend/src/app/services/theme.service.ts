@@ -7,19 +7,18 @@ export type Theme = 'light' | 'dark' | 'auto';
   providedIn: 'root'
 })
 export class ThemeService {
-  private readonly theme$ = new BehaviorSubject<Theme>('auto');
+  private readonly theme$ = new BehaviorSubject<Theme>('light');
   
   constructor() {
     // Cargar tema guardado o preferencia del sistema
     const savedTheme = localStorage.getItem('theme') as Theme;
     let initialTheme: Theme;
     
-    if (savedTheme && ['light', 'dark'].includes(savedTheme)) {
+    if (savedTheme && ['light', 'dark', 'auto'].includes(savedTheme)) {
       initialTheme = savedTheme;
     } else {
-      // Detección automática
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      initialTheme = prefersDark ? 'dark' : 'light';
+      // Por defecto usar modo claro
+      initialTheme = 'light';
     }
     
     // Aplicar tema inmediatamente antes de notificar
@@ -46,17 +45,14 @@ export class ThemeService {
   private applyTheme(theme: Theme) {
     const root = document.documentElement;
     
+    let shouldBeDark: boolean;
     if (theme === 'auto') {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      root.classList.toggle('dark', prefersDark);
+      shouldBeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     } else {
-      root.classList.toggle('dark', theme === 'dark');
+      shouldBeDark = theme === 'dark';
     }
     
-    // Forzar re-renderizado para asegurar que los cambios se apliquen
-    setTimeout(() => {
-      root.classList.toggle('dark', theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches));
-    }, 0);
+    root.classList.toggle('dark', shouldBeDark);
   }
 
   // Para detectar cambios en preferencias del sistema
