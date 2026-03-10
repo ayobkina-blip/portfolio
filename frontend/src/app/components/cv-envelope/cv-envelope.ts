@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -6,67 +6,69 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   selector: 'app-cv-envelope',
   imports: [CommonModule],
   templateUrl: './cv-envelope.html',
-  styleUrl: './cv-envelope.css',
+  styleUrls: ['./cv-envelope.css'],
 })
-export class CvEnvelopeComponent {
+export class CvEnvelopeComponent implements OnDestroy {
   @Input() isOpen = false;
   @Output() isOpenChange = new EventEmitter<boolean>();
 
-  envelopeVisible = true;
-  thrown          = false;
-  cvVisible       = false;
-  cvIn            = false;
-  cvOut           = false;
-  closing         = false;
-
+  /**
+   * State machine:
+   *  'closed'  → click envelope → 'opening' → 1100ms → 'open'
+   *  'open'    → click X        → 'closing' →  450ms → 'closed' → 300ms → emit false
+   */
+  state: 'closed' | 'opening' | 'open' | 'closing' = 'closed';
   pdfUrl: SafeResourceUrl;
+  private timer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(private sanitizer: DomSanitizer) {
-    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('assets/CV_pdf.pdf');
+    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('assets/CV.pdf');
   }
 
-  throwEnvelope(): void {
-    if (this.thrown) return;
-
-    // Step 1: Seal breaks + envelope starts flying
-    this.thrown = true;
-
-    // Step 2: Show CV while envelope is still flying off screen
-    setTimeout(() => {
-      this.cvVisible = true;
-      // Small delay so Angular renders the element before adding animation class
-      setTimeout(() => { this.cvIn = true; }, 30);
-    }, 350);
-
-    // Step 3: Remove envelope from DOM after throw animation ends
-    setTimeout(() => {
-      this.envelopeVisible = false;
-    }, 700);
+  /** Envelope scene shown while not yet fully open */
+  get isEnvelopeVisible(): boolean {
+    return this.state === 'closed' || this.state === 'opening';
   }
 
-  close(): void {
-    if (this.closing) return;
-    this.closing = true;
+  /** CV viewer shown while open OR animating out */
+  get isCvVisible(): boolean {
+    return this.state === 'open' || this.state === 'closing';
+  }
 
-    // CV folds back down
-    this.cvIn  = false;
-    this.cvOut = true;
-
-    // Remove CV + close modal after fold animation
-    setTimeout(() => {
-      this.cvVisible       = false;
-      this.cvOut           = false;
-      this.envelopeVisible = true;
-      this.thrown          = false;
-      this.closing         = false;
-      this.isOpen          = false;
-      this.isOpenChange.emit(false);
-    }, 500);
+  openEnvelope(): void {
+    if (this.state !== 'closed') return;
+    this.state = 'opening';
+    this.timer = setTimeout(() => {
+      this.state = 'open';
+    }, 1100);
   }
 
   onBackdropClick(event: MouseEvent): void {
     if (event.target === event.currentTarget) {
       this.close();
     }
+  }
+
+  close(): void {
+    if (this.state !== 'open') return;
+    if (this.timer) clearTimeout(this.timer);
+
+    // Step 1: play exit animation on CV viewer
+    this.state = 'closing';
+
+    // Step 2: after animation, reset to closed envelope
+    this.timer = setTimeout(() => {
+      this.state = 'closed';
+
+      // Step 3: emit after envelope re-entrance settles
+      this.timer = setTimeout(() => {
+        this.isOpen = false;
+        this.isOpenChange.emit(false);
+      }, 300);
+    }, 450);
+  }
+
+  ngOnDestroy(): void {
+    if (this.timer) clearTimeout(this.timer);
   }
 }
