@@ -20,7 +20,7 @@
     "tags": ["Angular", "TypeScript", "Tailwind CSS", "GSAP", "Responsive Design"],
     "github_url": null,
     "demo_url": null,
-    "featured": true,
+    "featured": false,
     "order": 2
   },
   {
@@ -32,7 +32,7 @@
     "tags": ["JavaScript", "API REST", "PVGIS", "Solar Energy", "ROI Calculator", "Geospatial"],
     "github_url": "https://github.com/ayobkina-blip/CalculadoraSolar",
     "demo_url": null,
-    "featured": false,
+    "featured": true,
     "order": 3
   },
   {
