@@ -12,13 +12,19 @@ export class ThemeService {
   constructor() {
     // Cargar tema guardado o preferencia del sistema
     const savedTheme = localStorage.getItem('theme') as Theme;
+    let initialTheme: Theme;
+    
     if (savedTheme && ['light', 'dark'].includes(savedTheme)) {
-      this.theme$.next(savedTheme);
+      initialTheme = savedTheme;
     } else {
       // Detección automática
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      this.theme$.next(prefersDark ? 'dark' : 'light');
+      initialTheme = prefersDark ? 'dark' : 'light';
     }
+    
+    // Aplicar tema inmediatamente antes de notificar
+    this.applyTheme(initialTheme);
+    this.theme$.next(initialTheme);
   }
 
   get theme() {
@@ -46,6 +52,11 @@ export class ThemeService {
     } else {
       root.classList.toggle('dark', theme === 'dark');
     }
+    
+    // Forzar re-renderizado para asegurar que los cambios se apliquen
+    setTimeout(() => {
+      root.classList.toggle('dark', theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches));
+    }, 0);
   }
 
   // Para detectar cambios en preferencias del sistema

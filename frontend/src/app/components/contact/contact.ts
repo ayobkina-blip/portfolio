@@ -21,8 +21,16 @@ export class ContactComponent {
   submitted = false;
   error = false;
   currentYear = new Date().getFullYear();
+  emailCopied = false;
 
   constructor(private portfolioService: PortfolioService) {}
+
+  copyEmail(): void {
+    navigator.clipboard.writeText('ayobkina@gmail.com').then(() => {
+      this.emailCopied = true;
+      setTimeout(() => this.emailCopied = false, 3000);
+    });
+  }
 
   onSubmit() {
     this.loading = true;

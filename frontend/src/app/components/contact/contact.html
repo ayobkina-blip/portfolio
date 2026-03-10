@@ -15,18 +15,19 @@
       <div class="md:col-span-2 space-y-4 reveal-left">
         <h3 class="text-base font-bold text-gray-900 dark:text-gray-100 mb-6">Hablemos</h3>
 
-        <a href="mailto:ayobkina@gmail.com"
-          class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 shadow-sm hover:border-gray-300 dark:hover:border-gray-500 transition-colors group">
+        <button
+          (click)="copyEmail()"
+          class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 shadow-sm hover:border-gray-300 dark:hover:border-gray-500 transition-colors group w-full">
           <div class="w-9 h-9 flex items-center justify-center rounded-lg bg-gray-200 dark:bg-gray-700 group-hover:bg-gray-300 dark:group-hover:bg-gray-600 transition-colors flex-shrink-0">
             <svg class="w-4.5 h-4.5 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
             </svg>
           </div>
-          <div>
+          <div class="text-left">
             <p class="text-xs text-gray-400 dark:text-gray-500 font-medium">Email</p>
-            <p class="text-sm font-semibold text-gray-800 dark:text-gray-200">ayobkina&#64;gmail.com</p>
+            <p class="text-sm font-semibold text-gray-800 dark:text-gray-200">ayobkina@gmail.com</p>
           </div>
-        </a>
+        </button>
 
         <a href="https://linkedin.com/in/ayob-elkinani" target="_blank" rel="noopener noreferrer"
           class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 shadow-sm hover:border-gray-300 dark:hover:border-gray-500 transition-colors group">
@@ -126,12 +127,13 @@
       &copy; {{ currentYear }} <span class="font-semibold text-gray-600 dark:text-gray-400">Ayob El Kinani</span>
     </p>
     <div class="flex items-center gap-3">
-      <a href="mailto:ayobkina@gmail.com"
+      <button
+        (click)="copyEmail()"
         class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
         </svg>
-      </a>
+      </button>
       <a href="https://linkedin.com/in/ayob-elkinani" target="_blank" rel="noopener noreferrer"
         class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -147,3 +149,15 @@
     </div>
   </div>
 </footer>
+
+<!-- Toast -->
+<div [class]="emailCopied
+  ? 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 bg-gray-900 dark:bg-gray-700 text-white text-sm font-medium px-4 py-3 rounded-xl shadow-xl transition-all duration-300 opacity-100 translate-y-0'
+  : 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 bg-gray-900 dark:bg-gray-700 text-white text-sm font-medium px-4 py-3 rounded-xl shadow-xl transition-all duration-300 opacity-0 translate-y-2 pointer-events-none'">
+  <div class="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
+    <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+    </svg>
+  </div>
+  Email copiado al portapapeles
+</div>
