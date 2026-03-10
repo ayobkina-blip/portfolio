@@ -14,10 +14,10 @@
   {
     "id": 2,
     "title": "Portfolio Personal",
-    "description": "Portfolio fullstack con Laravel como API REST y Angular en el frontend.",
-    "short_desc": "Portfolio fullstack Laravel + Angular.",
+    "description": "Portfolio desarrollado principalmente con Angular, con componentes modernos, sistema de tema claro/oscuro, animaciones con GSAP y TailwindCSS para un diseño responsivo y atractivo.",
+    "short_desc": "Portfolio personal con Angular, tema claro/oscuro y animaciones modernas.",
     "image": null,
-    "tags": ["Laravel", "Angular", "Tailwind CSS", "TypeScript"],
+    "tags": ["Angular", "TypeScript", "Tailwind CSS", "GSAP", "Responsive Design"],
     "github_url": null,
     "demo_url": null,
     "featured": true,
