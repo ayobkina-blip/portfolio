@@ -25,13 +25,13 @@
         class="w-full sm:w-auto px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
         Ver proyectos
       </button>
-      <a href="/assets/cv-ayob-elkinani.pdf" download="CV-Ayob-El-Kinani.pdf"
+      <button (click)="showCv = true"
         class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5">
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
         </svg>
-        Descargar CV
-      </a>
+        Ver CV
+      </button>
     </div>
 
     <!-- Social links -->
@@ -109,5 +109,7 @@
     </div>
     Email copiado al portapapeles
   </div>
+
+  <app-cv-envelope [(isOpen)]="showCv"></app-cv-envelope>
 
 </section>
