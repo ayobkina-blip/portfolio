@@ -1,8 +1,10 @@
 import { Component, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [CommonModule, ThemeToggleComponent],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })

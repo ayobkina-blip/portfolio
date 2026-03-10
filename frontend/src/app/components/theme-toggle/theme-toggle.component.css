@@ -1,0 +1,85 @@
+.app-theme-toggle {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, background-color, border-color, color;
+}
+
+.app-theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.app-theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Animación suave entre iconos */
+.app-theme-toggle svg {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+/* Efecto de rotación sutil al cambiar tema */
+@keyframes iconRotate {
+  0% { 
+    transform: rotate(0deg) scale(0.8); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: rotate(180deg) scale(1.1); 
+    opacity: 0.5; 
+  }
+  100% { 
+    transform: rotate(360deg) scale(1); 
+    opacity: 1; 
+  }
+}
+
+.app-theme-toggle svg {
+  animation: iconRotate 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estados de focus mejorados para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .app-theme-toggle {
+    transition: none;
+  }
+  
+  .app-theme-toggle svg {
+    transition: none;
+    animation: none;
+  }
+  
+  .app-theme-toggle:hover {
+    transform: none;
+  }
+  
+  .app-theme-toggle:active {
+    transform: none;
+  }
+}
+
+/* Mejor contraste para modo oscuro */
+@media (prefers-contrast: high) {
+  .app-theme-toggle {
+    border-width: 2px;
+  }
+}
+
+/* Efecto de brillo sutil en hover */
+.app-theme-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.app-theme-toggle:hover::before {
+  opacity: 1;
+}
+
+.dark .app-theme-toggle::before {
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+}

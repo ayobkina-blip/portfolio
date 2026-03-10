@@ -1,6 +1,6 @@
 @if (loading) {
   <section class="py-24 px-6 flex items-center justify-center min-h-64">
-    <div class="flex items-center gap-3 text-gray-400">
+    <div class="flex items-center gap-3 text-gray-400 dark:text-gray-500">
       <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
@@ -13,19 +13,19 @@
     <p class="text-red-400 text-sm">Error al cargar la experiencia.</p>
   </section>
 } @else {
-  <section id="experience" class="py-24 px-6 bg-gray-50">
+  <section id="experience" class="py-24 px-6">
     <div class="max-w-3xl mx-auto">
 
       <!-- Title -->
       <div class="mb-16 reveal text-center">
-        <h2 class="text-3xl font-bold text-gray-900 section-title center">Experiencia</h2>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 section-title center">Experiencia</h2>
       </div>
 
       <!-- Timeline -->
       <div class="relative">
 
         <!-- Vertical line -->
-        <div class="absolute left-5 top-2 bottom-2 w-px bg-gradient-to-b from-gray-400 via-gray-300 to-transparent"></div>
+        <div class="absolute left-5 top-2 bottom-2 w-px bg-gradient-to-b from-gray-400 dark:from-gray-500 via-gray-300 dark:via-gray-600 to-transparent"></div>
 
         <div class="space-y-10">
           @for (exp of data; track exp.id) {
@@ -33,26 +33,26 @@
 
               <!-- Dot -->
               <div class="relative flex-shrink-0 w-10 flex justify-center">
-                <div class="absolute top-1 w-3.5 h-3.5 rounded-full border-2 border-gray-600 bg-white ring-4 ring-gray-100 z-10"></div>
+                <div class="absolute top-1 w-3.5 h-3.5 rounded-full border-2 border-gray-600 dark:border-gray-400 bg-white dark:bg-gray-800 ring-4 ring-gray-100 dark:ring-gray-700 z-10"></div>
               </div>
 
               <!-- Card -->
               <div class="flex-1 pb-2">
-                <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm card-hover">
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-2xl p-6 shadow-sm card-hover">
 
                   <!-- Header -->
                   <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
                     <div>
-                      <h3 class="text-base font-bold text-gray-900">{{ exp.role }}</h3>
-                      <p class="text-gray-700 text-sm font-semibold mt-0.5">{{ exp.company }}</p>
+                      <h3 class="text-base font-bold text-gray-900 dark:text-gray-100">{{ exp.role }}</h3>
+                      <p class="text-gray-700 dark:text-gray-300 text-sm font-semibold mt-0.5">{{ exp.company }}</p>
                     </div>
-                    <span class="flex-shrink-0 text-xs font-medium text-gray-500 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-lg">
+                    <span class="flex-shrink-0 text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-3 py-1.5 rounded-lg">
                       {{ formatDateRange(exp.start_date, exp.end_date) }}
                     </span>
                   </div>
 
                   <!-- Location -->
-                  <div class="flex items-center gap-1.5 text-xs text-gray-400 mb-4">
+                  <div class="flex items-center gap-1.5 text-xs text-gray-400 dark:text-gray-500 mb-4">
                     <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                       <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
@@ -61,14 +61,14 @@
                   </div>
 
                   <!-- Description -->
-                  <div class="text-sm text-gray-600 leading-relaxed">
+                  <div class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                     {{ exp.description }}
                   </div>
 
                   <!-- Tags -->
                   <div class="flex flex-wrap gap-1.5">
                     @for (tag of exp.tags; track tag) {
-                      <span class="text-xs px-2.5 py-1 rounded-md bg-gray-100 text-gray-700 border border-gray-200 font-code">
+                      <span class="text-xs px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600 font-code">
                         {{ tag }}
                       </span>
                     }
