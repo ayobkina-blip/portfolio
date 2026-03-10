@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  @apply bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding-top: 4rem;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { @apply bg-gray-100 dark:bg-gray-900; }
+::-webkit-scrollbar-thumb { @apply bg-indigo-400 dark:bg-indigo-600; border-radius: 3px; }
+
+/* ── Reveal on scroll ── */
+.reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Skill bar animation ── */
+.skill-bar-animated {
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Hero gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Underline animation ── */
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  transition: width 0.4s ease;
+}
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* ── Section title line ── */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 2px;
+  margin-top: 10px;
+}
+.section-title.center::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Card hover ── */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  @apply shadow-xl;
+}
+
+/* ── Fira Code for code-like elements ── */
+.font-code {
+  font-family: 'Fira Code', monospace;
+}

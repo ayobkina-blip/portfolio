@@ -1,0 +1,49 @@
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm border-b border-gray-100"
+  [class.shadow-sm]="hasScrolled">
+
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <button (click)="scrollToSection('hero')" class="group flex items-center">
+        <span class="text-lg font-bold text-gray-900">ayob</span>
+        <span class="text-lg font-bold text-gray-400 transition-colors group-hover:text-gray-500">.</span>
+        <span class="text-lg font-bold text-gray-900">dev</span>
+      </button>
+
+      <!-- Links desktop -->
+      <div class="hidden md:flex items-center gap-1">
+        <button (click)="scrollToSection('about')"
+          class="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 transition-colors">
+          Sobre mí
+        </button>
+        <button (click)="scrollToSection('projects')"
+          class="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 transition-colors">
+          Proyectos
+        </button>
+        <button (click)="scrollToSection('skills')"
+          class="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 transition-colors">
+          Skills
+        </button>
+        <button (click)="scrollToSection('experience')"
+          class="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 transition-colors">
+          Experiencia
+        </button>
+        <button (click)="scrollToSection('contact')"
+          class="ml-3 text-sm font-medium bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition-colors">
+          Contacto
+        </button>
+      </div>
+
+      <!-- Right -->
+      <div class="flex items-center gap-1">
+        <button class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "App Gestión Policía Local",
+    "description": "Aplicación web interna desarrollada en solitario para la Policía Local de Algemesí. Incluye gestión de incidencias, inventario, armamento de ciudadanos y chat en tiempo real.",
+    "short_desc": "App web interna para gestión operativa policial con chat en tiempo real.",
+    "image": null,
+    "tags": ["Laravel 12", "PHP", "Tailwind CSS", "MySQL", "WebSockets", "Blade"],
+    "github_url": null,
+    "demo_url": null,
+    "featured": true,
+    "order": 1
+  },
+  {
+    "id": 2,
+    "title": "Portfolio Personal",
+    "description": "Portfolio fullstack con Laravel como API REST y Angular en el frontend.",
+    "short_desc": "Portfolio fullstack Laravel + Angular.",
+    "image": null,
+    "tags": ["Laravel", "Angular", "Tailwind CSS", "TypeScript"],
+    "github_url": null,
+    "demo_url": null,
+    "featured": true,
+    "order": 2
+  }
+]
