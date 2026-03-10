@@ -1,0 +1,38 @@
+/* Mejoras de diseño para tarjetas de experiencia */
+
+/* Hover sutil con cambio de borde en lugar de color */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  border-color: #111827; /* gray-900 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.dark .card-hover:hover {
+  border-color: #ffffff; /* white */
+  box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05);
+}
+
+/* Mejorar transiciones para todos los elementos interactivos */
+.card-hover * {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Tags con estilo mejorado */
+.font-mono {
+  font-family: 'ui-monospace', 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+}
+
+/* Mejorar espaciado interno */
+.p-8 {
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .p-8 {
+    padding: 1.5rem;
+  }
+}
