@@ -42,9 +42,10 @@ export class ContactComponent {
         this.submitted = true;
         this.formData = { nombre: '', email: '', mensaje: '' };
       },
-      error: () => {
+      error: (error) => {
         this.loading = false;
         this.error = true;
+        console.error('Contact form error:', error);
       }
     });
   }
