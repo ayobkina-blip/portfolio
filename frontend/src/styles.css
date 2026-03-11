@@ -9,6 +9,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  --text-hero: clamp(2.25rem, 5vw + 1rem, 4.5rem);
+  --text-h2: clamp(1.5rem, 3vw + 0.5rem, 2rem);
+  --text-body: clamp(0.875rem, 1.5vw + 0.25rem, 1.125rem);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -28,18 +34,19 @@ body {
 
 /* ── Reveal on scroll ── */
 .reveal {
-  opacity: 1;
-  transform: none;
-  transition: none;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
 .reveal-left {
-  opacity: 1;
-  transform: none;
-  transition: none;
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 .reveal-left.visible {
   opacity: 1;
@@ -91,6 +98,9 @@ body {
 }
 
 /* ── Section title line ── */
+.section-title {
+  font-size: var(--text-h2);
+}
 .section-title::after {
   content: '';
   display: block;
@@ -111,15 +121,21 @@ body {
 
 /* ── Card hover ── */
 .card-hover {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-hover:hover {
-  transform: translateY(-4px);
-  @apply shadow-xl;
+  border-color: #111827;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .dark .card-hover:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+  border-color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05);
+}
+
+.card-hover * {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /* ── Dark mode improvements ── */
@@ -127,7 +143,6 @@ body {
   color-scheme: dark;
 }
 
-/* Better contrast for dark mode */
 .dark .text-gray-500 {
   color: rgb(156 163 175);
 }
@@ -140,7 +155,6 @@ body {
   color: rgb(209 213 219);
 }
 
-/* Improved shadows for dark mode */
 .dark .shadow-sm {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
 }
@@ -157,7 +171,6 @@ body {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
 }
 
-/* Better focus states for dark mode */
 .dark .focus\:ring-gray-500:focus {
   --tw-ring-color: rgb(107 114 128);
 }
@@ -169,4 +182,70 @@ body {
 /* ── Fira Code for code-like elements ── */
 .font-code {
   font-family: 'Fira Code', monospace;
+}
+
+/* ── Scroll hint animation ── */
+.scroll-hint {
+  animation: scrollHint 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollHint {
+  0%, 100% { opacity: 0.5; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(6px); }
+}
+
+/* ── Stagger reveal for skill cards ── */
+.reveal.visible .skill-card {
+  animation: staggerIn 0.4s ease-out both;
+}
+
+.reveal.visible .skill-card:nth-child(1) { animation-delay: 0ms; }
+.reveal.visible .skill-card:nth-child(2) { animation-delay: 50ms; }
+.reveal.visible .skill-card:nth-child(3) { animation-delay: 100ms; }
+.reveal.visible .skill-card:nth-child(4) { animation-delay: 150ms; }
+.reveal.visible .skill-card:nth-child(5) { animation-delay: 200ms; }
+.reveal.visible .skill-card:nth-child(6) { animation-delay: 250ms; }
+
+@keyframes staggerIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-left {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .card-hover {
+    transition: none;
+  }
+  .card-hover:hover {
+    transform: none;
+  }
+
+  .skill-bar-animated {
+    transition: none;
+  }
+
+  .animated-underline::after {
+    transition: none;
+  }
+
+  .scroll-hint {
+    animation: none;
+  }
+
+  .reveal.visible .skill-card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }

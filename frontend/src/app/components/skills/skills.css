@@ -1,43 +1,45 @@
-/* Mejoras de diseño para tarjetas de skills */
-
-/* Hover sutil con cambio de borde en lugar de solo sombra */
+/* Hover sutil con cambio de borde */
 .skill-card {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
 }
 
 .skill-card:hover {
-  border-color: #111827; /* gray-900 */
+  border-color: #111827;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transform: translateY(-2px);
 }
 
 .dark .skill-card:hover {
-  border-color: #ffffff; /* white */
+  border-color: #ffffff;
   box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05);
 }
 
-/* Mejorar transiciones para todos los elementos interactivos */
 .skill-card * {
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Mejorar espaciado interno */
-.p-6 {
-  padding: 1.5rem;
+/* Base mobile: padding compacto */
+.skill-card {
+  padding: 1.25rem;
 }
 
-@media (max-width: 768px) {
-  .p-6 {
-    padding: 1rem;
+@media (min-width: 768px) {
+  .skill-card {
+    padding: 1.5rem;
   }
-}
-
-/* Asegurar altura consistente en grid */
-.h-full {
-  height: 100%;
 }
 
 /* Animación mejorada para barras de progreso */
 .skill-bar-animated {
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card {
+    transition: none;
+  }
+  .skill-card:hover {
+    transform: none;
+  }
 }

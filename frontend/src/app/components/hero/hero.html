@@ -1,36 +1,36 @@
-<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-16 pb-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+<section id="hero" class="relative min-h-dvh flex flex-col items-center justify-center px-6 pt-20 pb-12 sm:pt-24 sm:pb-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
 
   <div class="absolute inset-0 -z-10 bg-gray-50 dark:bg-gray-900 pointer-events-none"></div>
 
-  <div class="max-w-3xl w-full mx-auto text-center">
+  <div class="max-w-3xl w-full mx-auto text-center space-y-4 sm:space-y-5">
 
-    <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight leading-none mb-4">
+    <h1 class="font-extrabold text-gray-900 dark:text-gray-100 tracking-tight leading-tight" style="font-size: var(--text-hero)">
       Ayob El Kinani
     </h1>
 
-    <div class="mb-6">
+    <div>
       <span class="text-xl md:text-2xl font-semibold text-gray-600 dark:text-gray-300">
-        Web Developer Jr.
+        Desarrollador Web Jr.
       </span>
     </div>
 
-    <p class="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed">
-      Desarrollo soluciones web completas que resuelven problemas reales.<br class="hidden md:block">
-      Apasionado por crear tecnología que marca la diferencia.
+    <p class="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
+      Desarrollo aplicaciones web completas que resuelven problemas reales para personas reales.<br class="hidden md:block">
+      Me gusta entender el contexto, hablar con usuarios y convertir sus necesidades en producto.
     </p>
 
     <!-- CTA Buttons -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 mb-10 sm:mb-12">
       <button (click)="scrollToSection('projects')"
         class="w-full sm:w-auto px-6 py-3 bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-gray-900 font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
-        Ver proyectos
+        Ver proyectos reales
       </button>
       <button (click)="showCv = true"
         class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-900 dark:hover:text-gray-100 font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5">
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
         </svg>
-        Ver CV
+        Ver CV en detalle
       </button>
     </div>
 
@@ -42,8 +42,8 @@
         <button
           (click)="copyEmail()"
           [class]="emailCopied
-            ? 'w-10 h-10 flex items-center justify-center rounded-xl border border-emerald-400 text-emerald-500 transition-all duration-200'
-            : 'w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 hover:-translate-y-0.5'">
+            ? 'w-11 h-11 flex items-center justify-center rounded-xl border border-emerald-400 text-emerald-500 transition-all duration-200'
+            : 'w-11 h-11 flex items-center justify-center rounded-xl border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 hover:-translate-y-0.5'">
           <!-- Icono email (visible por defecto, oculto en hover y cuando está copiado) -->
           <svg
             [class]="emailCopied ? 'w-4.5 h-4.5 absolute opacity-0' : 'w-4.5 h-4.5 absolute transition-opacity duration-200 group-hover:opacity-0'"
@@ -71,7 +71,7 @@
 
       <!-- LinkedIn -->
       <a href="https://linkedin.com/in/ayob-elkinani" target="_blank" rel="noopener noreferrer"
-        class="group w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 hover:-translate-y-0.5"
+        class="group w-11 h-11 flex items-center justify-center rounded-xl border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 hover:-translate-y-0.5"
         title="LinkedIn">
         <svg class="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24">
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -80,7 +80,7 @@
 
       <!-- GitHub -->
       <a href="https://github.com/ayobkina-blip" target="_blank" rel="noopener noreferrer"
-        class="group w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 hover:-translate-y-0.5"
+        class="group w-11 h-11 flex items-center justify-center rounded-xl border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 hover:-translate-y-0.5"
         title="GitHub">
         <svg class="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
@@ -90,7 +90,7 @@
     </div>
 
     <!-- Scroll hint -->
-    <div class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500 animate-bounce mt-12">
+    <div class="flex flex-col items-center gap-1.5 text-gray-400 dark:text-gray-500 mt-10 sm:mt-12 scroll-hint">
       <span class="text-xs font-medium tracking-widest uppercase">Scroll</span>
       <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />

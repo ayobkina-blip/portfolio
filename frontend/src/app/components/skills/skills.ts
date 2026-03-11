@@ -28,25 +28,4 @@ export class SkillsComponent implements OnInit {
       }
     });
   }
-
-  getSkillIcon(skillName: string): string {
-    const icons: { [key: string]: string } = {
-      'HTML / CSS': '🌐',
-      'Blade': '🔪',
-      'Tailwind CSS': '🎨',
-      'JavaScript': '⚡',
-      'Angular': '🅰️',
-      'Laravel / PHP': '🐘',
-      'Eloquent ORM': '🗃️',
-      'API REST': '🔌',
-      'MySQL': '🗄️',
-      'WebSockets': '🌐',
-      'VS Code': '💻',
-      'Git': '📦',
-      'Linux': '🐧',
-      'Redes / Hardware': '🔧'
-    };
-    
-    return icons[skillName] || '💡';
-  }
 }

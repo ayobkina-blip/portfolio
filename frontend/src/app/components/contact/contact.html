@@ -1,4 +1,4 @@
-<section id="contact" class="py-24 px-6">
+<section id="contact" class="py-16 md:py-20 lg:py-24 px-6">
 
   <div class="max-w-5xl mx-auto">
 
@@ -6,21 +6,16 @@
 
     <!-- Title -->
 
-    <div class="mb-16 reveal text-center">
-
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 section-title center">Contacto</h2>
-
+    <div class="mb-10 md:mb-16 reveal text-center">
+      <h2 class="font-bold text-gray-900 dark:text-gray-100 section-title center">Contacto</h2>
       <p class="text-gray-500 dark:text-gray-400 mt-4 text-sm max-w-md mx-auto">
-
-        ¿Tienes un proyecto en mente o quieres hablar? Escríbeme.
-
+        Si buscas a alguien que pueda encargarse de una parte del desarrollo o de un proyecto web completo, cuéntame qué necesitas y vemos cómo encajamos.
       </p>
-
     </div>
 
 
 
-    <div class="grid md:grid-cols-5 gap-12 items-start">
+    <div class="grid md:grid-cols-5 gap-8 md:gap-12 items-start">
 
 
 
@@ -97,97 +92,57 @@
 
 
           @if (submitted) {
-
             <div class="flex flex-col items-center justify-center py-12 text-center">
-
               <div class="w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-4">
-
                 <svg class="w-7 h-7 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-
                   <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-
                 </svg>
-
               </div>
-
               <h3 class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2">¡Mensaje enviado!</h3>
-
-              <p class="text-sm text-gray-500 dark:text-gray-400">Me pondré en contacto contigo lo antes posible.</p>
-
+              <p class="text-sm text-gray-500 dark:text-gray-400">Te responderé en cuanto lea tu mensaje.</p>
             </div>
-
           } @else {
 
             <form (ngSubmit)="onSubmit()" class="space-y-5">
 
               <div>
-
                 <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nombre</label>
-
                 <input 
-
                   type="text" 
-
                   id="nombre" 
-
                   name="nombre" 
-
                   [(ngModel)]="formData.nombre" 
-
                   required
-
-                  class="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:border-transparent transition-all"
-
-                  placeholder="Tu nombre">
-
+                  class="w-full px-4 py-2.5 min-h-[2.75rem] border border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:border-transparent transition-all"
+                  placeholder="¿Cómo te llamas?">
               </div>
 
 
 
               <div>
-
                 <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
-
                 <input 
-
                   type="email" 
-
                   id="email" 
-
                   name="email" 
-
                   [(ngModel)]="formData.email" 
-
                   required
-
-                  class="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:border-transparent transition-all"
-
-                  placeholder="tu@email.com">
-
+                  class="w-full px-4 py-2.5 min-h-[2.75rem] border border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:border-transparent transition-all"
+                  placeholder="nombre@empresa.com">
               </div>
 
 
 
               <div>
-
                 <label for="mensaje" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Mensaje</label>
-
                 <textarea 
-
                   id="mensaje" 
-
                   name="mensaje" 
-
                   [(ngModel)]="formData.mensaje" 
-
                   required
-
                   rows="4"
-
                   class="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:border-transparent transition-all resize-none"
-
-                  placeholder="Tu mensaje..."></textarea>
-
+                  placeholder="Cuéntame brevemente el proyecto, el contexto o qué necesitas..."></textarea>
               </div>
 
 
@@ -249,9 +204,7 @@
   <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
 
     <p class="text-sm text-gray-400 dark:text-gray-500">
-
-      &copy; {{ currentYear }} <span class="font-semibold text-gray-600 dark:text-gray-400">Ayob El Kinani</span>
-
+      &copy; {{ currentYear }} <span class="font-semibold text-gray-600 dark:text-gray-400">Ayob El Kinani</span>. Construido con Laravel, Angular y muchas ganas de aprender cada día.
     </p>
 
     <div class="flex items-center gap-3">
@@ -260,7 +213,7 @@
 
         (click)="copyEmail()"
 
-        class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+        class="w-11 h-11 flex items-center justify-center rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
 
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
 
@@ -272,7 +225,7 @@
 
       <a href="https://linkedin.com/in/ayob-elkinani" target="_blank" rel="noopener noreferrer"
 
-        class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+        class="w-11 h-11 flex items-center justify-center rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
 
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
 
@@ -284,7 +237,7 @@
 
       <a href="https://github.com/ayobkina-blip" target="_blank" rel="noopener noreferrer"
 
-        class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+        class="w-11 h-11 flex items-center justify-center rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
 
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
 
