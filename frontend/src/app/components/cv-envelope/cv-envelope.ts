@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -12,10 +12,20 @@ export class CvEnvelopeComponent implements OnDestroy {
   @Input() isOpen = false;
   @Output() isOpenChange = new EventEmitter<boolean>();
 
+  @HostListener('document:keydown.escape')
+  onEscape() {
+    if (this.state === 'open') {
+      this.close();
+    } else if (this.state === 'closed' && this.isOpen) {
+      this.isOpen = false;
+      this.isOpenChange.emit(false);
+    }
+  }
+
   /**
    * State machine:
    *  'closed'  → click envelope → 'opening' → 1100ms → 'open'
-   *  'open'    → click X        → 'closing' →  450ms → 'closed' → 300ms → emit false
+   *  'open'    → click X        → 'closing' →  420ms → 'closed' + emit false
    */
   state: 'closed' | 'opening' | 'open' | 'closing' = 'closed';
   pdfUrl: SafeResourceUrl;
@@ -53,19 +63,13 @@ export class CvEnvelopeComponent implements OnDestroy {
     if (this.state !== 'open') return;
     if (this.timer) clearTimeout(this.timer);
 
-    // Step 1: play exit animation on CV viewer
     this.state = 'closing';
 
-    // Step 2: after animation, reset to closed envelope
     this.timer = setTimeout(() => {
       this.state = 'closed';
-
-      // Step 3: emit after envelope re-entrance settles
-      this.timer = setTimeout(() => {
-        this.isOpen = false;
-        this.isOpenChange.emit(false);
-      }, 300);
-    }, 450);
+      this.isOpen = false;
+      this.isOpenChange.emit(false);
+    }, 420);
   }
 
   ngOnDestroy(): void {
