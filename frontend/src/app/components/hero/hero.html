@@ -40,24 +40,25 @@
       <!-- Email -->
       <div class="relative group">
         <button
+          type="button"
           (click)="copyEmail()"
           [class]="emailCopied
-            ? 'w-11 h-11 flex items-center justify-center rounded-xl border border-emerald-400 text-emerald-500 transition-all duration-200'
-            : 'w-11 h-11 flex items-center justify-center rounded-xl border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 hover:-translate-y-0.5'">
+            ? 'w-11 h-11 flex items-center justify-center rounded-xl border border-emerald-400 text-emerald-500 transition-all duration-200 touch-manipulation'
+            : 'w-11 h-11 flex items-center justify-center rounded-xl border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 hover:-translate-y-0.5 touch-manipulation'">
           <!-- Icono email (visible por defecto, oculto en hover y cuando está copiado) -->
-          <svg
+          <svg class="pointer-events-none"
             [class]="emailCopied ? 'w-4.5 h-4.5 absolute opacity-0' : 'w-4.5 h-4.5 absolute transition-opacity duration-200 group-hover:opacity-0'"
             fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
           </svg>
           <!-- Icono copiar (visible en hover, oculto cuando está copiado) -->
-          <svg
+          <svg class="pointer-events-none"
             [class]="emailCopied ? 'w-4.5 h-4.5 absolute opacity-0' : 'w-4.5 h-4.5 absolute opacity-0 transition-opacity duration-200 group-hover:opacity-100'"
             fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2" />
           </svg>
           <!-- Icono check (visible solo cuando está copiado) -->
-          <svg
+          <svg class="pointer-events-none"
             [class]="emailCopied ? 'w-4.5 h-4.5 absolute text-emerald-500 transition-opacity duration-200 opacity-100' : 'w-4.5 h-4.5 absolute opacity-0'"
             fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
