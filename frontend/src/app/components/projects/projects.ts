@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioService } from '../../services/portfolio.service';
 import { Project } from '../../models/project.model';
@@ -8,23 +8,29 @@ import { Project } from '../../models/project.model';
   imports: [CommonModule],
   templateUrl: './projects.html',
   styleUrl: './projects.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectsComponent implements OnInit {
   data: Project[] = [];
   loading = true;
   error = false;
 
-  constructor(private portfolioService: PortfolioService) {}
+  constructor(
+    private portfolioService: PortfolioService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.portfolioService.getProjects().subscribe({
       next: (res) => {
         this.data = res.data;
         this.loading = false;
+        this.cdr.markForCheck();
       },
       error: () => {
         this.error = true;
         this.loading = false;
+        this.cdr.markForCheck();
       }
     });
   }

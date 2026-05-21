@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioService } from '../../services/portfolio.service';
 import { Skill } from '../../models/skill.model';
@@ -8,17 +8,19 @@ import { Skill } from '../../models/skill.model';
   imports: [CommonModule],
   templateUrl: './skills.html',
   styleUrl: './skills.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkillsComponent implements OnInit {
   data: Skill[] = [];
   loading = true;
   error = false;
 
-  constructor(private portfolioService: PortfolioService) {}
+  constructor(
+    private portfolioService: PortfolioService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
-    console.log('Iniciando carga de skills...');
-    
     // Datos fallback por si el JSON no carga
     const fallbackSkills: Skill[] = [
       { id: 1, name: "HTML / CSS", category: "frontend", level: 90, order: 1 },
@@ -40,20 +42,18 @@ export class SkillsComponent implements OnInit {
     // Intentar cargar desde el servicio
     this.portfolioService.getSkills().subscribe({
       next: (res) => {
-        console.log('Skills response:', res);
         if (res && res.data && res.data.length > 0) {
           this.data = res.data;
-          console.log('Skills cargadas desde JSON:', this.data.length);
         } else {
-          console.log('Usando datos fallback');
           this.data = fallbackSkills;
         }
         this.loading = false;
+        this.cdr.markForCheck();
       },
-      error: (error) => {
-        console.error('Error cargando skills, usando fallback:', error);
+      error: () => {
         this.data = fallbackSkills;
         this.loading = false;
+        this.cdr.markForCheck();
       }
     });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioService } from '../../services/portfolio.service';
 import { Experience } from '../../models/experience.model';
@@ -8,23 +8,29 @@ import { Experience } from '../../models/experience.model';
   imports: [CommonModule],
   templateUrl: './experience.html',
   styleUrl: './experience.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExperienceComponent implements OnInit {
   data: Experience[] = [];
   loading = true;
   error = false;
 
-  constructor(private portfolioService: PortfolioService) {}
+  constructor(
+    private portfolioService: PortfolioService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.portfolioService.getExperience().subscribe({
       next: (res) => {
         this.data = res.data;
         this.loading = false;
+        this.cdr.markForCheck();
       },
       error: () => {
         this.error = true;
         this.loading = false;
+        this.cdr.markForCheck();
       }
     });
   }

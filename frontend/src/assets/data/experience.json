@@ -5,7 +5,7 @@
     "role": "Desarrollador Web",
     "description": "Desarrollé de forma independiente una aplicación web interna para la gestión operativa del cuerpo. Módulo de incidencias, control de materiales, registro de armamento y chat en tiempo real. Recogí requisitos con agentes y administrativos entregando mejoras de forma iterativa.",
     "tags": ["Laravel 12", "PHP", "Blade", "Tailwind CSS", "JavaScript", "MySQL", "WebSockets"],
-    "start_date": "2026-02-01",
+    "start_date": "2025-02-01",
     "end_date": null,
     "location": "Algemesí · Presencial"
   },

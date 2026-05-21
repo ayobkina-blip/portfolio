@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ClipboardService } from '../../services/clipboard.service';
 import { ApiResponse } from '../../models/api-response.model';
 
 @Component({
@@ -9,6 +10,7 @@ import { ApiResponse } from '../../models/api-response.model';
   imports: [CommonModule, FormsModule],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactComponent {
   formData = {
@@ -23,10 +25,11 @@ export class ContactComponent {
   currentYear = new Date().getFullYear();
   emailCopied = false;
 
-  constructor(private portfolioService: PortfolioService) {}
+  private portfolioService = inject(PortfolioService);
+  private clipboardService = inject(ClipboardService);
 
   copyEmail(): void {
-    navigator.clipboard.writeText('ayobkina@gmail.com').then(() => {
+    this.clipboardService.copyEmail().then(() => {
       this.emailCopied = true;
       setTimeout(() => this.emailCopied = false, 3000);
     });
