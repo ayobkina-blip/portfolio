@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar';
 import { HeroComponent } from './components/hero/hero';
@@ -8,6 +9,7 @@ import { SkillsComponent } from './components/skills/skills';
 import { ExperienceComponent } from './components/experience/experience';
 import { ContactComponent } from './components/contact/contact';
 import { ThemeService } from './services/theme.service';
+import { VercelAnalyticsService } from './services/vercel-analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -31,9 +33,25 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   private themeService = inject(ThemeService);
   private revealObserver: IntersectionObserver | null = null;
   private mutationObserver: MutationObserver | null = null;
+  private router = inject(Router);
+  private vercelAnalytics = inject(VercelAnalyticsService);
 
   ngOnInit() {
     this.themeService.initAutoDetection();
+
+    // Track initial load and subsequent route navigations
+    try {
+      // initial page
+      this.vercelAnalytics.trackPageview(window.location.pathname + window.location.search);
+
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.vercelAnalytics.trackPageview(event.urlAfterRedirects);
+        }
+      });
+    } catch (e) {
+      // ignore in environments without Router
+    }
   }
 
   ngAfterViewInit() {

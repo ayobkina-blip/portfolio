@@ -16,7 +16,7 @@ export class HeroComponent implements OnInit, OnDestroy {
   // Typing animation
   private readonly phrases = [
     'Desarrollador Web Jr.',
-    'Especialista en Laravel.',
+    'Frontend y backend.',
     'Amante del producto real.',
     'Disponible para proyectos.',
   ];
