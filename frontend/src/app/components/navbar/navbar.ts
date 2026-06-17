@@ -1,58 +1,43 @@
-import { Component, HostListener } from '@angular/core';
-
-import { CommonModule } from '@angular/common';
-
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 
-
-
 @Component({
-
   selector: 'app-navbar',
-
-  imports: [CommonModule, ThemeToggleComponent],
-
+  imports: [ThemeToggleComponent],
   templateUrl: './navbar.html',
-
   styleUrl: './navbar.css',
-
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:scroll)': 'onWindowScroll()',
+    '(window:resize)': 'onWindowResize()',
+  },
 })
-
 export class NavbarComponent {
-  hasScrolled = false;
-  isMenuOpen = false;
+  hasScrolled = signal(false);
+  isMenuOpen = signal(false);
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    this.hasScrolled = window.scrollY > 10;
+  onWindowScroll(): void {
+    this.hasScrolled.set(window.scrollY > 10);
   }
 
-  @HostListener('window:resize', [])
-  onWindowResize() {
-    if (window.innerWidth >= 768 && this.isMenuOpen) {
-      this.isMenuOpen = false;
+  onWindowResize(): void {
+    if (window.innerWidth >= 768 && this.isMenuOpen()) {
+      this.isMenuOpen.set(false);
     }
   }
 
   scrollToSection(sectionId: string): void {
-    const element = document.getElementById(sectionId);
-
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Cerrar menú móvil después de navegar
-    if (this.isMenuOpen) {
-      this.isMenuOpen = false;
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    if (this.isMenuOpen()) {
+      this.isMenuOpen.set(false);
     }
   }
 
   toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
+    this.isMenuOpen.update((open) => !open);
   }
 
   closeMenu(): void {
-    this.isMenuOpen = false;
+    this.isMenuOpen.set(false);
   }
 }
-

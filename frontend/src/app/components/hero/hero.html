@@ -105,7 +105,7 @@
   </div>
 
   <!-- Toast -->
-  <div [class]="emailCopied()
+  <div role="status" aria-live="polite" [class]="emailCopied()
     ? 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 bg-gray-900 dark:bg-gray-700 text-white text-sm font-medium px-4 py-3 rounded-xl shadow-xl transition-all duration-300 opacity-100 translate-y-0'
     : 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 bg-gray-900 dark:bg-gray-700 text-white text-sm font-medium px-4 py-3 rounded-xl shadow-xl transition-all duration-300 opacity-0 translate-y-2 pointer-events-none'">
     <div class="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">

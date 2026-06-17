@@ -1,62 +1,57 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ChangeDetectionStrategy, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ClipboardService } from '../../services/clipboard.service';
-import { ApiResponse } from '../../models/api-response.model';
 
 @Component({
   selector: 'app-contact',
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
   formData = {
     nombre: '',
     email: '',
-    mensaje: ''
+    mensaje: '',
   };
-  
-  loading = false;
-  submitted = false;
-  error = false;
+
+  loading = signal(false);
+  submitted = signal(false);
+  error = signal(false);
+  emailCopied = signal(false);
   currentYear = new Date().getFullYear();
-  emailCopied = false;
 
   private portfolioService = inject(PortfolioService);
   private clipboardService = inject(ClipboardService);
 
   copyEmail(): void {
     this.clipboardService.copyEmail().then(() => {
-      this.emailCopied = true;
-      setTimeout(() => this.emailCopied = false, 3000);
+      this.emailCopied.set(true);
+      setTimeout(() => this.emailCopied.set(false), 3000);
     });
   }
 
-  onSubmit() {
-    this.loading = true;
-    this.error = false;
-    
+  onSubmit(): void {
+    this.loading.set(true);
+    this.error.set(false);
+
     this.portfolioService.sendContact(this.formData).subscribe({
-      next: (res: ApiResponse<any>) => {
-        this.loading = false;
-        this.submitted = true;
+      next: () => {
+        this.loading.set(false);
+        this.submitted.set(true);
         this.formData = { nombre: '', email: '', mensaje: '' };
       },
-      error: (error) => {
-        this.loading = false;
-        this.error = true;
-        console.error('Contact form error:', error);
-      }
+      error: (err) => {
+        this.loading.set(false);
+        this.error.set(true);
+        console.error('Contact form error:', err);
+      },
     });
   }
 
   scrollToSection(sectionId: string): void {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

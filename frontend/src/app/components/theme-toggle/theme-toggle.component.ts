@@ -1,12 +1,10 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { ThemeService, Theme } from '../../services/theme.service';
-import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-theme-toggle',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <button 
       (click)="toggleTheme()" 
@@ -15,7 +13,7 @@ import { Subscription } from 'rxjs';
       class="relative w-10 h-10 flex items-center justify-center rounded-lg border transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2"
       [class]="themeClasses"
       [attr.aria-label]="ariaLabel"
-      [attr.aria-pressed]="currentTheme === 'dark'"
+      [attr.aria-checked]="currentTheme === 'dark'"
       role="switch"
       type="button">
       
