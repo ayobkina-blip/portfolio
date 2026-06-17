@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/co
 import { Router, NavigationEnd } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar';
+import { IntroComponent } from './components/intro/intro';
 import { HeroComponent } from './components/hero/hero';
 import { AboutComponent } from './components/about/about';
 import { ProjectsComponent } from './components/projects/projects';
@@ -15,6 +16,7 @@ import { VercelAnalyticsService } from './services/vercel-analytics.service';
   selector: 'app-root',
   imports: [
     RouterOutlet,
+    IntroComponent,
     NavbarComponent,
     HeroComponent,
     AboutComponent,

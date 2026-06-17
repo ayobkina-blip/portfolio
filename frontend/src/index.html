@@ -10,6 +10,20 @@
   <!-- Vercel Analytics: pega aquí el snippet que provee Vercel (Dashboard → Analytics) -->
   <!-- Ejemplo: <script defer src="https://static.vercel-insights.com/script.js" data-...></script> -->
   <script id="vercel-analytics-placeholder"></script>
+  <script>
+    // Decide si la intro de entrada debe reproducirse antes de pintar,
+    // para evitar un flash del hero. Solo en la primera visita de la
+    // sesión y respetando prefers-reduced-motion.
+    (function () {
+      try {
+        var seen = sessionStorage.getItem('introSeen');
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!seen && !reduced) {
+          document.documentElement.classList.add('is-loading');
+        }
+      } catch (e) { /* noop */ }
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>

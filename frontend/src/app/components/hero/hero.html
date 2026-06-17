@@ -4,11 +4,11 @@
 
   <div class="max-w-3xl w-full mx-auto text-center space-y-4 sm:space-y-5">
 
-    <h1 class="font-extrabold text-gray-900 dark:text-gray-100 tracking-tight leading-tight" style="font-size: var(--text-hero)">
+    <h1 class="hero-enter font-extrabold text-gray-900 dark:text-gray-100 tracking-tight leading-tight" style="font-size: var(--text-hero); --enter-delay: 60ms">
       Ayob El Kinani
     </h1>
 
-    <div class="h-8 flex items-center justify-center">
+    <div class="hero-enter h-8 flex items-center justify-center" style="--enter-delay: 180ms">
       <span class="text-xl md:text-2xl font-semibold text-gray-600 dark:text-gray-300 font-mono">
         {{ displayText() }}<span
           class="inline-block w-0.5 h-5 ml-0.5 bg-gray-500 dark:bg-gray-400 align-middle"
@@ -17,13 +17,13 @@
       </span>
     </div>
 
-    <p class="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
+    <p class="hero-enter text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed" style="--enter-delay: 280ms">
       Desarrollo aplicaciones web completas que resuelven problemas reales para personas reales.<br class="hidden md:block">
       Me gusta entender el contexto, hablar con usuarios y convertir sus necesidades en producto.
     </p>
 
     <!-- CTA Buttons -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 mb-10 sm:mb-12">
+    <div class="hero-enter flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 mb-10 sm:mb-12" style="--enter-delay: 380ms">
       <button (click)="scrollToSection('projects')"
         class="w-full sm:w-auto px-6 py-3 bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-gray-900 font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
         Ver proyectos reales
@@ -38,7 +38,7 @@
     </div>
 
     <!-- Social links -->
-    <div class="flex items-center justify-center gap-3 overflow-visible">
+    <div class="hero-enter flex items-center justify-center gap-3 overflow-visible" style="--enter-delay: 480ms">
 
       <!-- Email -->
       <div class="relative group">
@@ -94,11 +94,13 @@
     </div>
 
     <!-- Scroll hint -->
-    <div class="flex flex-col items-center gap-1.5 text-gray-400 dark:text-gray-500 mt-10 sm:mt-12 scroll-hint">
-      <span class="text-xs font-medium tracking-widest uppercase">Scroll</span>
-      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-      </svg>
+    <div class="hero-enter mt-10 sm:mt-12" style="--enter-delay: 600ms">
+      <div class="flex flex-col items-center gap-1.5 text-gray-400 dark:text-gray-500 scroll-hint">
+        <span class="text-xs font-medium tracking-widest uppercase">Scroll</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+        </svg>
+      </div>
     </div>
   </div>
 

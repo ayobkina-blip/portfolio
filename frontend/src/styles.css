@@ -32,6 +32,38 @@ body {
 ::-webkit-scrollbar-track { @apply bg-gray-100 dark:bg-gray-900; }
 ::-webkit-scrollbar-thumb { @apply bg-indigo-400 dark:bg-indigo-600; border-radius: 3px; }
 
+/* ── Intro / entrada ── */
+/* Bloquea el scroll mientras la cortina de intro está activa */
+body.intro-lock {
+  overflow: hidden;
+}
+
+/* Mientras carga la intro, el contenido del hero permanece oculto
+   para que la cortina lo revele "limpio" antes de animarlo. */
+.is-loading .hero-enter {
+  opacity: 0;
+}
+
+/* Al terminar la intro, cada elemento del hero entra en cascada. */
+.is-loaded .hero-enter {
+  opacity: 0;
+  animation: heroEnter 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
 /* ── Reveal on scroll ── */
 .reveal {
   opacity: 0;
@@ -237,6 +269,14 @@ body {
 
   .scroll-hint {
     animation: none;
+  }
+
+  .is-loading .hero-enter,
+  .is-loaded .hero-enter {
+    opacity: 1;
+    animation: none;
+    transform: none;
+    filter: none;
   }
 
   .reveal.visible .skill-card {
